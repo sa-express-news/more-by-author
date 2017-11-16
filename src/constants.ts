@@ -1,0 +1,1 @@
+export const BYLINE_SELECTOR = 'p.byline > a';
