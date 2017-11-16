@@ -1,0 +1,3 @@
+[submodule "src/ts-util"]
+	path = src/ts-util
+	url = https://github.com/KiaFarhang/typescript-utils.git
