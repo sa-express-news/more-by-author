@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "test": "test",
-    "watch": "./node_modules/.bin/webpack --watch"
+    "watch": "./node_modules/.bin/webpack --watch",
+    "build": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,8 @@
     "url": "https://github.com/sa-express-news/more-by-author/issues"
   },
   "homepage": "https://github.com/sa-express-news/more-by-author#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "ts-loader": "^3.1.1",
     "typescript": "^2.6.1",
     "webpack": "^3.8.1"
