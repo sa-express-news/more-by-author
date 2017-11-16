@@ -1,0 +1,25 @@
+{
+  "name": "express-news-more-by-author",
+  "version": "0.0.1",
+  "description": "Create a \"more by this author\" box of story links on an Express-News article page.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "test",
+    "watch": "./node_modules/.bin/webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sa-express-news/more-by-author.git"
+  },
+  "author": "Kia Farhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sa-express-news/more-by-author/issues"
+  },
+  "homepage": "https://github.com/sa-express-news/more-by-author#readme",
+  "dependencies": {
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.6.1",
+    "webpack": "^3.8.1"
+  }
+}

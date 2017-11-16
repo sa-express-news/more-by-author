@@ -3,6 +3,7 @@
 
 #production
 /build
+/dist
 
 #API access logs
 /log
