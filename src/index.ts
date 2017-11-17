@@ -8,14 +8,38 @@ const findByline = (document: Document): string => {
     return document.querySelector(constants.BYLINE_SELECTOR).textContent;
 }
 
+// Given an array of feed items, return a <div.more-by-author> containing each item
+// Formatted as a <p> containing an <a> 
+
+const createAuthorBox = (feedItems: AuthorFeedItem[]): HTMLDivElement => {
+
+    // Given a feed item, return <p><a href={feed item's URL}>{feed item's headline}</a></p>
+
+    const createStoryLink = (storyData: AuthorFeedItem): HTMLParagraphElement => {
+        const p = document.createElement('p');
+        const a = document.createElement('a');
+        a.innerText = storyData.titleText;
+        a.href = storyData.redirectionUrl;
+        p.appendChild(a);
+
+        return p;
+    }
+
+    const div = document.createElement('div');
+    div.classList.add('more-by-author');
+
+    const paragraphs = feedItems.map((feedItem) => createStoryLink(feedItem));
+
+    paragraphs.forEach((paragraph) => div.appendChild(paragraph));
+
+    return div;
+
+}
+
 const main = async (): Promise<void> => {
     // Find the byline in the current article
 
-    console.log('checking for author');
-
     const author = findByline(document);
-
-    console.log(author);
 
     if (!author) return;
 
@@ -31,11 +55,17 @@ const main = async (): Promise<void> => {
 
     const rawFeedResponse = await fetch(feedURL);
 
-    const feedResponse: AuthorFeedItem | AuthorFeedItem[] = await rawFeedResponse.json();
+    let feedResponse: AuthorFeedItem | AuthorFeedItem[] = await rawFeedResponse.json();
 
-    console.log(feedResponse);
+    if (!Array.isArray(feedResponse)) {
+        feedResponse = [feedResponse];
+    }
 
-    // Extract the headline and story link from the feed
+    const authorBox = createAuthorBox(feedResponse);
+
+    const elementToInsertAfter = document.querySelector(constants.SIBLING_INSERT_SELECTOR);
+
+    elementToInsertAfter.parentNode.insertBefore(authorBox, elementToInsertAfter.nextSibling);
 
 }
 
